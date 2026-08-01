@@ -1,0 +1,14 @@
+{
+  "provider": "quantemplate",
+  "sources": [
+    "quantemplate-fabricapi-api-openapi.yml"
+  ],
+  "outputs": [
+    "quantemplate-fabricapi-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

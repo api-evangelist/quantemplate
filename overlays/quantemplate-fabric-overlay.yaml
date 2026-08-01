@@ -1,0 +1,20 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Quantemplate FabricAPI
+  version: 1.0.0
+extends: openapi/quantemplate-fabric-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-rating: 3
+    x-apievangelist-notes: >-
+      Bearer-JWT auth, URI-path versioning (v1), per-dataset versioning, and an
+      X-QT-Trace-Id correlation header. No idempotency-key or pagination contract
+      documented. Error bodies are text/plain (4xx) except 404 (JSON), not RFC 9457.
+- target: $.paths['/organisations/{organisationId}/pipelines/{pipelineId}/executions'].post
+  update:
+    x-apievangelist-flow: straight-through-processing
+    x-apievangelist-followed-by: download-dataset
+- target: $.paths['/organisations/{organisationId}/datasets/{datasetId}'].get
+  update:
+    x-apievangelist-produces: text/csv

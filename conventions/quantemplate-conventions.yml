@@ -1,0 +1,40 @@
+generated: '2026-07-20'
+method: searched
+source: https://quantemplate.readme.io/reference
+docs: https://quantemplate.readme.io/docs
+notes: >-
+  Cross-cutting request/response semantics for the Quantemplate FabricAPI,
+  derived from the OpenAPI harvested from the ReadMe developer hub and the
+  guides. Only genuinely-documented behaviours are recorded here.
+authentication:
+  style: bearer-jwt
+  scheme: http
+  header: Authorization
+  detail: Bearer token (JWT). See authentication/quantemplate-authentication.yml
+versioning:
+  scheme: uri-path
+  current: v1
+  base_url: https://api.prod.quantemplate.com/v1
+  dataset_versioning:
+    param: version
+    in: query
+    type: integer
+    note: Datasets are individually versioned; the optional `version` query param on Download Dataset selects a specific version.
+request_tracing:
+  header: X-QT-Trace-Id
+  in: header
+  required: false
+  note: Optional client-supplied trace id echoed through the platform for request correlation.
+idempotency:
+  supported: false
+  note: No idempotency-key contract is documented.
+pagination:
+  supported: false
+  note: No collection/list operations with pagination are documented in the public reference.
+error_envelope:
+  json_shape: PipelineExecutionOutputNotFound (executionId, outputId) on 404
+  text_shape: text/plain string body on 401/403/204
+  format: not-rfc9457
+  cross_ref: errors/quantemplate-problem-types.yml
+rate_limit_signaling:
+  documented: false

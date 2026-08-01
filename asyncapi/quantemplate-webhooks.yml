@@ -1,0 +1,15 @@
+generated: '2026-07-20'
+method: searched
+source: https://quantemplate.readme.io/docs
+spec_type: Webhooks
+notes: >-
+  The Quantemplate developer hub documents a pipeline-notification (webhook)
+  surface for receiving events. No published AsyncAPI document was found, so
+  this captures the documented event catalog only. Event payload schemas were
+  not published in a machine-readable form at harvest time and are not fabricated.
+events:
+- name: PipelineCompleted
+  description: Emitted when a pipeline execution completes.
+- name: DatasetUpdated
+  description: Emitted when a dataset is updated.
+delivery: webhook / pipeline notifications

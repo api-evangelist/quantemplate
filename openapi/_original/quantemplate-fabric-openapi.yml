@@ -1,0 +1,219 @@
+openapi: 3.0.1
+info:
+  title: Quantemplate API
+  version: 0.0.1
+  description: Quantemplate FabricAPI - data ingress/egress operations to automate
+    data flow through the Quantemplate insurance data-management platform. Harvested
+    verbatim from the provider's ReadMe developer hub (per-operation OpenAPI fragments).
+  x-apievangelist-source: https://quantemplate.readme.io/reference (per-operation
+    OpenAPI blocks, merged)
+  x-apievangelist-harvested: '2026-07-20'
+servers:
+- url: https://api.prod.quantemplate.com/v1
+tags:
+- name: FabricAPI
+paths:
+  /organisations/{organisationId}/pipelines/{pipelineId}/executions:
+    post:
+      tags:
+      - FabricAPI
+      summary: Execute Pipeline
+      description: Run a preconfigured pipeline.
+      operationId: execute-pipeline
+      parameters:
+      - name: X-QT-Trace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: organisationId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: pipelineId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Pipeline execution accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PipelineExecutionView'
+        '204':
+          description: No content
+          content:
+            text/plain:
+              schema:
+                type: string
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                type: string
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PipelineExecutionOutputNotFound'
+  /organisations/{organisationId}/datasets/{datasetId}:
+    get:
+      tags:
+      - FabricAPI
+      summary: Download Dataset
+      description: Returns a stream of UTF-8 encoded CSV for the given dataset.
+      operationId: download-dataset
+      parameters:
+      - name: X-QT-Trace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: organisationId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: datasetId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Dataset data as UTF-8 encoded CSV
+          content:
+            text/csv:
+              schema:
+                type: string
+                description: Dataset data as UTF-8 encoded CSV
+        '204':
+          description: No content
+          content:
+            text/plain:
+              schema:
+                type: string
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                type: string
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PipelineExecutionOutputNotFound'
+components:
+  schemas:
+    PipelineExecutionOutputNotFound:
+      required:
+      - executionId
+      - outputId
+      type: object
+      properties:
+        executionId:
+          $ref: '#/components/schemas/PipelineExecutionId'
+        outputId:
+          $ref: '#/components/schemas/PipelineExecutionOutputId'
+    PipelineExecutionId:
+      required:
+      - value
+      type: object
+      properties:
+        value:
+          type: string
+    PipelineExecutionOutputId:
+      required:
+      - value
+      type: object
+      properties:
+        value:
+          type: string
+    PipelineExecutionView:
+      required:
+      - id
+      - runNumber
+      - createdAt
+      - createdBy
+      - version
+      - status
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Quantemplate ID of the execution, beginning 'e-...'.
+        runNumber:
+          type: integer
+          description: The run number (per pipeline; increases with each execution,
+            starting from 1).
+        createdAt:
+          type: string
+          description: The date and time that the execution was requested.
+          format: date-time
+        createdBy:
+          type: string
+          description: The Quantemplate ID of the user who requested the execution.
+        startedAt:
+          type: string
+          description: The date and time that the execution began.
+          format: date-time
+        finishedAt:
+          type: string
+          description: The date and time that the execution finished.
+          format: date-time
+        version:
+          type: integer
+          description: The pipeline version at the time the execution was requested.
+          format: int64
+        outputs:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineExecutionOutputView'
+          description: The list of outputs resulting from the execution.
+        status:
+          type: string
+          description: The status of the execution (Started|Succeeded|Failed|Cancelled).
+    PipelineExecutionOutputView:
+      required:
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Quantemplate ID of the output, beginning 'o-...'.
+        name:
+          type: string
+          description: The name of the output.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+- bearerAuth: []

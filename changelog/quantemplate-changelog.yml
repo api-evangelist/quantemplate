@@ -1,0 +1,15 @@
+generated: '2026-07-20'
+method: searched
+source: https://updates.quantemplate.com/en/
+notes: >-
+  Quantemplate publishes a dated product-updates feed via Beamer at
+  updates.quantemplate.com. Entries are JavaScript-rendered and were not
+  extractable as static text at harvest time; the labeling scheme is captured
+  here and no dated entries are fabricated.
+scheme: rolling-updates
+categories:
+- announcement
+- beta
+- improvement
+- new
+entries: []

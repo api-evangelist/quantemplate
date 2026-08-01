@@ -1,0 +1,45 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/quantemplate-fabric-openapi.yml
+notes: >-
+  Entity-relationship graph derived from the FabricAPI OpenAPI paths, schemas,
+  and id-reference conventions. Quantemplate resources use typed id prefixes
+  (execution 'e-...', output 'o-...').
+entities:
+- name: Organisation
+  id_param: organisationId
+  note: Top-level tenant; every path is scoped to an organisation.
+- name: Pipeline
+  id_param: pipelineId
+  belongs_to: Organisation
+- name: PipelineExecution
+  schema: PipelineExecutionView
+  id_prefix: e-
+  belongs_to: Pipeline
+  fields: [id, runNumber, createdAt, createdBy, startedAt, finishedAt, version, status]
+- name: PipelineExecutionOutput
+  schema: PipelineExecutionOutputView
+  id_prefix: o-
+  belongs_to: PipelineExecution
+  fields: [id, name]
+- name: Dataset
+  id_param: datasetId
+  belongs_to: Organisation
+  note: Individually versioned; produced/consumed by pipelines.
+relationships:
+- from: Pipeline
+  to: Organisation
+  type: belongs_to
+  via: organisationId
+- from: PipelineExecution
+  to: Pipeline
+  type: belongs_to
+  via: pipelineId
+- from: PipelineExecution
+  to: PipelineExecutionOutput
+  type: has_many
+  via: outputs
+- from: Dataset
+  to: Organisation
+  type: belongs_to
+  via: organisationId

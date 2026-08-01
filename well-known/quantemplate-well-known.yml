@@ -1,0 +1,29 @@
+generated: '2026-07-20'
+method: probed
+host: https://www.quantemplate.com
+notes: >-
+  Probed the standard /.well-known/ discovery surface on the marketing host and
+  the app host. No machine-readable discovery documents are published. The app
+  host returns 200 for /.well-known/security.txt but the body is the app's HTML
+  shell, not an RFC 9116 security.txt, so it is not captured as SecurityTxt.
+documents:
+- path: /.well-known/security.txt
+  host: https://www.quantemplate.com
+  status: 404
+- path: /.well-known/security.txt
+  host: https://app.quantemplate.com
+  status: 200
+  valid: false
+  detail: returns app HTML shell, not RFC 9116 text
+- path: /.well-known/openid-configuration
+  host: https://www.quantemplate.com
+  status: 404
+- path: /.well-known/oauth-authorization-server
+  host: https://www.quantemplate.com
+  status: 404
+- path: /.well-known/api-catalog
+  host: https://www.quantemplate.com
+  status: 404
+- path: /.well-known/ai-plugin.json
+  host: https://www.quantemplate.com
+  status: 404

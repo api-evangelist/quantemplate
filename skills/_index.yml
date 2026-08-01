@@ -1,0 +1,7 @@
+generated: '2026-07-20'
+method: generated
+skills:
+- file: quantemplate-straight-through-processing.md
+  name: Run a Quantemplate pipeline and download its output
+  api: openapi/quantemplate-fabric-openapi.yml
+  operations: [execute-pipeline, download-dataset]

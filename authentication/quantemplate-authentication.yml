@@ -1,0 +1,13 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/quantemplate-fabric-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  sources:
+  - openapi/quantemplate-fabric-openapi.yml

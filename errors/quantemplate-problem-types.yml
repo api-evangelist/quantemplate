@@ -1,0 +1,39 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/quantemplate-fabric-openapi.yml
+format: not-rfc9457
+notes: >-
+  Derived from the 4xx responses declared in the harvested FabricAPI OpenAPI.
+  401/403/204 return a plain-text (text/plain) body; 404 returns a JSON
+  PipelineExecutionOutputNotFound object. The API does not use
+  application/problem+json.
+envelope:
+  json_404:
+    schema: PipelineExecutionOutputNotFound
+    fields: [executionId, outputId]
+  text_plain:
+    content_type: text/plain
+    applies_to: [401, 403, 204]
+problems:
+- status: 401
+  title: Unauthorized
+  media_type: text/plain
+  remediation: Supply a valid Bearer JWT in the Authorization header.
+  source_operations:
+  - openapi/quantemplate-fabric-openapi.yml#execute-pipeline
+  - openapi/quantemplate-fabric-openapi.yml#download-dataset
+- status: 403
+  title: Forbidden
+  media_type: text/plain
+  remediation: The authenticated principal lacks access to the requested organisation/pipeline/dataset.
+  source_operations:
+  - openapi/quantemplate-fabric-openapi.yml#execute-pipeline
+  - openapi/quantemplate-fabric-openapi.yml#download-dataset
+- status: 404
+  title: Not found
+  media_type: application/json
+  schema: PipelineExecutionOutputNotFound
+  remediation: Verify the organisationId, pipelineId, datasetId (and version) exist.
+  source_operations:
+  - openapi/quantemplate-fabric-openapi.yml#execute-pipeline
+  - openapi/quantemplate-fabric-openapi.yml#download-dataset

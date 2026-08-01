@@ -1,0 +1,23 @@
+generated: '2026-07-20'
+method: searched
+source: https://quantemplate.readme.io/reference
+notes: >-
+  Lifecycle posture for the Quantemplate FabricAPI. Versioning is URI-path (v1);
+  datasets carry their own integer version. A product-updates changelog is
+  published via Beamer. No public status page, SLA page, or formal deprecation
+  policy was found, so no StatusPage / Deprecation pointers are emitted.
+versioning:
+  scheme: uri-path
+  current: v1
+  base_url: https://api.prod.quantemplate.com/v1
+  dataset_versioning: integer version query param
+changelog:
+  url: https://updates.quantemplate.com/en/
+  cross_ref: changelog/quantemplate-changelog.yml
+deprecation:
+  policy_url: null
+  sunset_header: false
+sla:
+  url: null
+status_page: null
+deprecated_operations: []
