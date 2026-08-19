@@ -1,0 +1,87 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quantemplate FabricAPI API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "FabricAPI",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Execute Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.quantemplate.com/v1/organisations/:organisationId/pipelines/:pipelineId/executions",
+            "headers": [
+              {
+                "name": "X-QT-Trace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "organisationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Run a preconfigured pipeline."
+        },
+        {
+          "info": {
+            "name": "Download Dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.quantemplate.com/v1/organisations/:organisationId/datasets/:datasetId",
+            "headers": [
+              {
+                "name": "X-QT-Trace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "organisationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "datasetId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a stream of UTF-8 encoded CSV for the given dataset."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

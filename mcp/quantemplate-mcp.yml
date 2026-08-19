@@ -2,10 +2,8 @@ generated: '2026-07-20'
 method: derived
 status: candidate
 source: openapi/quantemplate-fabric-openapi.yml
-notes: >-
-  No official hosted/remote MCP server was found for Quantemplate. This is a
-  candidate tool list derived one-to-one from the harvested FabricAPI
-  operations, for a potential MCP wrapper.
+notes: No official hosted/remote MCP server was found for Quantemplate. This is a candidate tool list
+  derived one-to-one from the harvested FabricAPI operations, for a potential MCP wrapper.
 server:
   name: quantemplate
   transport: http
@@ -16,3 +14,9 @@ tools:
 - name: download_dataset
   description: Download a dataset as UTF-8 encoded CSV (optionally a specific version).
   source_operation: openapi/quantemplate-fabric-openapi.yml#download-dataset
+deployment:
+  mode: none
+  verified: derived
+  tools: 2
+  checked: '2026-08-12'
+  source: catalog MCP census
