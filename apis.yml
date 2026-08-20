@@ -44,6 +44,17 @@ tags:
 - Pipelines
 - Analytics
 - No-Code
+tags_raw:
+- Company
+- Insurance
+- Insurtech
+- Data Integration
+- Data Management
+- Bordereaux
+- Data Validation
+- Pipelines
+- Analytics
+- No-Code
 - API
 apis:
 - aid: quantemplate:quantemplate-fabricapi-api
