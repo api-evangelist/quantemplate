@@ -11,6 +11,18 @@ description: >-
   resulting datasets as CSV. Bordereaux management is a marquee solution, and the
   platform is used by insurers including Sompo, AXA, and Falls Lake Insurance.
 url: https://raw.githubusercontent.com/api-evangelist/quantemplate/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
