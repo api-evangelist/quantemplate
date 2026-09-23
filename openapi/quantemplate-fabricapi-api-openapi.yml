@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Quantemplate FabricAPI API
+  title: Quantemplate Fabric API
   version: 0.0.1
   description: Quantemplate FabricAPI - data ingress/egress operations to automate data flow through the Quantemplate insurance data-management platform. Harvested verbatim from the provider's ReadMe developer hub (per-operation OpenAPI fragments).
   x-apievangelist-source: https://quantemplate.readme.io/reference (per-operation OpenAPI blocks, merged)
@@ -172,18 +172,6 @@ components:
         status:
           type: string
           description: The status of the execution (Started|Succeeded|Failed|Cancelled).
-    PipelineExecutionOutputView:
-      required:
-      - id
-      - name
-      type: object
-      properties:
-        id:
-          type: string
-          description: The Quantemplate ID of the output, beginning 'o-...'.
-        name:
-          type: string
-          description: The name of the output.
     PipelineExecutionId:
       required:
       - value
@@ -208,6 +196,18 @@ components:
       properties:
         value:
           type: string
+    PipelineExecutionOutputView:
+      required:
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Quantemplate ID of the output, beginning 'o-...'.
+        name:
+          type: string
+          description: The name of the output.
   securitySchemes:
     bearerAuth:
       type: http
