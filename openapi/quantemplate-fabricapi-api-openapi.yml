@@ -129,6 +129,18 @@ paths:
                 $ref: '#/components/schemas/PipelineExecutionOutputNotFound'
 components:
   schemas:
+    PipelineExecutionOutputView:
+      required:
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Quantemplate ID of the output, beginning 'o-...'.
+        name:
+          type: string
+          description: The name of the output.
     PipelineExecutionView:
       required:
       - id
@@ -196,18 +208,6 @@ components:
       properties:
         value:
           type: string
-    PipelineExecutionOutputView:
-      required:
-      - id
-      - name
-      type: object
-      properties:
-        id:
-          type: string
-          description: The Quantemplate ID of the output, beginning 'o-...'.
-        name:
-          type: string
-          description: The name of the output.
   securitySchemes:
     bearerAuth:
       type: http
