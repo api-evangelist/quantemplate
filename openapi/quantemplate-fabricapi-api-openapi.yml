@@ -129,18 +129,16 @@ paths:
                 $ref: '#/components/schemas/PipelineExecutionOutputNotFound'
 components:
   schemas:
-    PipelineExecutionOutputView:
+    PipelineExecutionOutputNotFound:
       required:
-      - id
-      - name
+      - executionId
+      - outputId
       type: object
       properties:
-        id:
-          type: string
-          description: The Quantemplate ID of the output, beginning 'o-...'.
-        name:
-          type: string
-          description: The name of the output.
+        executionId:
+          $ref: '#/components/schemas/PipelineExecutionId'
+        outputId:
+          $ref: '#/components/schemas/PipelineExecutionOutputId'
     PipelineExecutionView:
       required:
       - id
@@ -184,24 +182,26 @@ components:
         status:
           type: string
           description: The status of the execution (Started|Succeeded|Failed|Cancelled).
-    PipelineExecutionId:
+    PipelineExecutionOutputId:
       required:
       - value
       type: object
       properties:
         value:
           type: string
-    PipelineExecutionOutputNotFound:
+    PipelineExecutionOutputView:
       required:
-      - executionId
-      - outputId
+      - id
+      - name
       type: object
       properties:
-        executionId:
-          $ref: '#/components/schemas/PipelineExecutionId'
-        outputId:
-          $ref: '#/components/schemas/PipelineExecutionOutputId'
-    PipelineExecutionOutputId:
+        id:
+          type: string
+          description: The Quantemplate ID of the output, beginning 'o-...'.
+        name:
+          type: string
+          description: The name of the output.
+    PipelineExecutionId:
       required:
       - value
       type: object
