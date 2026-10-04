@@ -129,16 +129,20 @@ paths:
                 $ref: '#/components/schemas/PipelineExecutionOutputNotFound'
 components:
   schemas:
-    PipelineExecutionOutputNotFound:
+    PipelineExecutionOutputId:
       required:
-      - executionId
-      - outputId
+      - value
       type: object
       properties:
-        executionId:
-          $ref: '#/components/schemas/PipelineExecutionId'
-        outputId:
-          $ref: '#/components/schemas/PipelineExecutionOutputId'
+        value:
+          type: string
+    PipelineExecutionId:
+      required:
+      - value
+      type: object
+      properties:
+        value:
+          type: string
     PipelineExecutionView:
       required:
       - id
@@ -182,13 +186,16 @@ components:
         status:
           type: string
           description: The status of the execution (Started|Succeeded|Failed|Cancelled).
-    PipelineExecutionOutputId:
+    PipelineExecutionOutputNotFound:
       required:
-      - value
+      - executionId
+      - outputId
       type: object
       properties:
-        value:
-          type: string
+        executionId:
+          $ref: '#/components/schemas/PipelineExecutionId'
+        outputId:
+          $ref: '#/components/schemas/PipelineExecutionOutputId'
     PipelineExecutionOutputView:
       required:
       - id
@@ -201,13 +208,6 @@ components:
         name:
           type: string
           description: The name of the output.
-    PipelineExecutionId:
-      required:
-      - value
-      type: object
-      properties:
-        value:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http
