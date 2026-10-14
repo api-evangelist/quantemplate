@@ -1,0 +1,24 @@
+generated: '2026-10-14'
+method: searched
+checked:
+- duck-creek/integrations/duck-creek-integration-edges.yml
+source:
+- duck-creek/integrations/duck-creek-integration-edges.yml
+edges:
+- partner_name: Duck Creek (own)
+  partner: duck-creek
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.duckcreek.com/partner/quantemplate/
+  mirror_of: duck-creek/integrations/duck-creek-integration-edges.yml
+  apps:
+  - Quantemplate
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Solution
